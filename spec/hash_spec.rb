@@ -522,6 +522,10 @@ describe Hash, 'to_params' do
   it 'should not leave a trailing &' do
     { :name => 'Bob', :address => { :street => '111 Ruby Ave.', :city => 'Ruby Central', :phones => ['111-111-1111', '222-222-2222'] } }.to_params.should_not match(/&$/)
   end
+  
+  it 'should encode query values' do
+    { :name => 'Alice & Bob' }.to_params.should == "name=Alice%20%26%20Bob"
+  end
 end
 
 describe Hash, 'to_mash' do
